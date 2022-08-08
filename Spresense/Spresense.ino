@@ -160,8 +160,6 @@ void prediction() {
   for (int i = 0; i < myo_channels; i++) {
     for (int j = 0; j < window_size; j++) {
       input->data.f[j + (i * 32)] = current_window[i][j];
-      //      input->data.f[j + (i * 32)] = ((1 / 255.0) + float(t1));
-      // Need to refresh model
     }
   }
 
