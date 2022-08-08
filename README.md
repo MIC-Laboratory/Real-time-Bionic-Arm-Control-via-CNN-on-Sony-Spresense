@@ -1,11 +1,13 @@
 # Module Setup Guide:
+    NOTE: Read Setup.md for INSTALLATION GUIDES.
 
-    1. ESP32 Devkit v1:
-        - arduino-esp32: https://github.com/espressif/arduino-esp32
-        - sparthan-myo: https://github.com/project-sparthan/sparthan-myo
-    
-    2. Sony Spresense (Main + Extension): 
-        - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
+    Sources: 
+        1. ESP32 Devkit v1:
+            - arduino-esp32: https://github.com/espressif/arduino-esp32
+            - sparthan-myo: https://github.com/project-sparthan/sparthan-myo
+        
+        2. Sony Spresense (Main + Extension): 
+            - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
 
 # Run Code in Arduino IDE:
     1. Flash ESP32/ESP32.ino to ESP32 Devkit v1 board
