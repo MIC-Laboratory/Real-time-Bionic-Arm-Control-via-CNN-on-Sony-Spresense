@@ -41,22 +41,39 @@ TfLiteTensor *output = nullptr;
 constexpr int kTensorArenaSize = 47 * 1024; // 47 kbs
 uint8_t tensor_arena[kTensorArenaSize];
 
+
 // Define the array to store EMG samples for current window (8x32)
 float current_window[8][32];
-
 // Tracker for current sample in current_window
 int curr_idx = 0;
 
 
 float *extract_semg(String string_semg) {
-  // semg_size should 16
-  // Processing takes 1ms: "0<1<2<3<4<5<6<255<0<1<2<3<4<5<6<255<"
+  /*
+    Params:
+      1. (String) string_semg -> A string sEMG array containing 16 samples
+          -> Sample: "0<1<2<3<4<5<6<255<0<1<2<3<4<5<6<255<" ("<" seperates each sEMG sample)
+            - First sEMG array: 1st to 8th sEMG sample comes from myo sensor/channel 1, 2 ... 8
+            - Second sEMG array: 9th to 16th sEMG samples comes from myo sensor/channel 1, 2 ... 8
+
+    Purpose:
+      Decode string_semg to a preprocessed float array.
+    
+    Returns:
+      1D float array of size 16.
+  */
+
+  // Initialize float array.
   static float semg[16];
 
   String temp_s = "";
   int t_idx = 0;
+
+  // Decode String sEMG array one by one
   for (int i = 0; i < string_semg.length(); i++) {
     String current_s = String(string_semg[i]);
+
+    // Signifies 1 sEMG sample is collected, start decoding to integer.
     if (current_s.equals("<")) {
       int semg_sample = temp_s.toInt();
 
@@ -76,6 +93,7 @@ float *extract_semg(String string_semg) {
       t_idx = t_idx + 1;
     }
 
+    // Signifies next char from string_semg is still part of an sEMG sample's value.
     else {
       temp_s = temp_s + current_s;
     }
@@ -90,11 +108,14 @@ void semg_handler(float semg_arr[]) {
     Purpose:
       Insert float sEMG array containing the 16 sEMG samples to current window.
   */
+
+  // Insert first sEMG array to current window
   for (int i = 0; i < 8; i++) {
     current_window[i][curr_idx] = semg_arr[i];
   }
   curr_idx = curr_idx + 1;
 
+  // Insert second sEMG array to current window
   for (int i = 0; i < 8; i++) {
     current_window[i][curr_idx] = semg_arr[i + 8];
   }
@@ -102,21 +123,25 @@ void semg_handler(float semg_arr[]) {
 }
 
 
-// Majority Voting Of 4
-// - Perform Bionic Arm gesture based on the most frequent prediction from every 4 predicted gestures.
+// Counter for Majority Voting Of 4
+// - Perform Bionic Arm gesture based on the most frequent prediction upon every 4 gesture predictions.
 int majority_counter = 4;
 
 /*
   Keep Track of predictions, vote every 4 predictions.
 
-  0: Relax Gesture
-  1: Fist Gesture
-  2: Ok Sign Gesture
-  3: Thumbs Up Gesture
+  index 0: Relax Gesture
+  index 1: Fist Gesture
+  index 2: Ok Sign Gesture
+  index 3: Thumbs Up Gesture
 */
 int counters[4] = {0, 0, 0, 0};
 
 void run_pred() {
+  /*
+    Purpose:
+      Run prediction when current_window is full.
+  */
   input = interpreter->input(0);
   output = interpreter->output(0);
 
@@ -145,7 +170,7 @@ void run_pred() {
     preds[i] = value;
   }
 
-  // find max index
+  // find index of the max predicted probability
   int p_max_idx = 0;
   for (int i = 0; i < 3; i++) {
     if (preds[p_max_idx] < preds[i + 1]) {
@@ -153,28 +178,19 @@ void run_pred() {
     }
   }
 
-  switch(p_max_idx) {
-    case 0: // 0 = Relax Gesture
-      counters[0] = counters[0] + 1;
-      break;
-
-    case 1: // 1 = Fist Gesture
-      counters[1] = counters[1] + 1;
-      break;
-
-    case 2: // 2 = Ok Sign Gesture
-      counters[2] = counters[2] + 1;
-      break;
-
-    default: // 3 = Thumbs Up Gesture
-      counters[3] = counters[3] + 1;
-      break
-  }
+  // Record prediction to majority_voting counters
+  counters[p_max_idx] = counters[p_max_idx] + 1;
 }
 
 
-void majority_voting(int counters[]) {
-  // Vote every 4 predictions, control Bionic Arm to perform most frequently predicted gesture.
+void majority_vote(int counters[]) {
+  /*
+    Purpose:
+      1. Perform majority vorting every 4 predictions
+      2. control Bionic Arm to perform voted gesture.
+  */
+
+  // Find the most frequently predicted gesture.
   int max_idx = 0;
   for (int i = 0; i < 3; i++) {
     if (counters[max_idx] < counters[i + 1]) {
@@ -182,8 +198,7 @@ void majority_voting(int counters[]) {
     }
   }
 
-  // Control Arm Here
-
+  // Control Bionic Arm Here
   switch(max_idx) {
     case 0: // 0 = Relax Gesture
       rest();
@@ -203,17 +218,22 @@ void majority_voting(int counters[]) {
     default: // 3 = Thumbs Up Gesture
       thumb_up();
       Serial.println("Thumb Up");
-      break
+      break;
   }
 
-  // Reset Counter
+  // Reset counters.
   for (int i = 0; i < 4; i++) {
     counters[i] = 0;
   }
 }
 
 
-void step() {
+void do_step() {
+  /*
+    Purpose:
+      Perform sliding step upon current_window.
+  */
+
   // Move last 16 samples from current to the front before next sliding window.
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 16; j++) {
@@ -232,11 +252,12 @@ void setup() {
   Serial2.begin(baud_rate);
   Serial.begin(baud_rate);
 
+
   myservo_thumb.attach(6); // red thumb
   myservo_index.attach(5); // green index
   myservo_pinky.attach(3); // blue middle, ring, pinkie
-
   rest(); // defauly Bionic Arm to Rest Gesture
+
 
   tflite::InitializeTarget();
   memset(tensor_arena, 0, kTensorArenaSize * sizeof(uint8_t));
@@ -295,47 +316,50 @@ void setup() {
 
 String str_semg = "";
 void loop() {
-  // Receive in Ascii
+  // UART Serial communication transmits in Ascii values
   if ((Serial2.available()) && (curr_idx < 32)) {
 
+    // Decode each Ascii character sent from ESP32 board
     String temp_semg = String(Serial2.read() - '0');
 
-    switch(temp_semg) {
-      case "15":
-        // Extract sEMG array to float array of size 16.
-        float *semg = NULL;
-        semg = extract_semg(str_semg);
-        
-        if (curr_idx < 32) {
-          semg_handler(semg);
-        }
-
-        if (curr_idx >= 32) {
-          // Run Prediction
-          run_pred();
-
-          // Vote every 4 predictions, control Bionic Arm to perform most frequently predicted gesture.
-          int total_preds = counters[0] + counters[1] + counters[2] + counters[3];
-          if (total_preds == majority_counter) {
-            majority_voting(counters);
-          }
-
-          // Rest counters to prepare for next sliding window of 16.
-          step();
-          
-          str_semg = "";
-        }
-        break;
+    // Signifies end of 16 sEMG samples.  Ascii for "?" is 63, Ascii for "0" is 48, 63 - 48 = "15"
+    if (temp_semg == "15") {
       
-      case "12":
-        // Indicates next char must be sEMG sample.
-        str_semg = str_semg + "<";
-        break;
+      // Extract sEMG array to float array of size 16.
+      float *semg = NULL;
+      semg = extract_semg(str_semg);
+      
+      // Insert semg to current_window when it ain't full.
+      if (curr_idx < 32) {
+        semg_handler(semg);
+      }
 
-      default:
-        // Indicates this char is part of an sEMG sample.
-        str_semg = str_semg + temp_semg;
-        break;
+      // Run Prediction when current_window is full.
+      if (curr_idx >= 32) {
+        run_pred();
+
+        // Vote every 4 predictions, control Bionic Arm to perform most frequently predicted gesture.
+        const int total_preds = counters[0] + counters[1] + counters[2] + counters[3];
+        if (total_preds == majority_counter) {
+          majority_vote(counters);
+        }
+
+        // Rest counters to prepare for next sliding window of 16.
+        do_step();
+      }
+
+      // Reset str_semg to extract next String sEMG array.
+      str_semg = "";
+    }
+
+    // Indicates next char must be an sEMG sample.
+    else if (temp_semg == "12") { // Ascii for "<" is 60, Ascii for "0" is 48, 60 - 48 = "12"
+      str_semg = str_semg + "<";
+    }
+
+    // Indicates this char is part of an sEMG sample.
+    else {
+      str_semg = str_semg + temp_semg;
     }
   }
 }
