@@ -328,8 +328,8 @@ void loop() {
     // Decode each Ascii character sent from ESP32 board
     String temp_semg = String(Serial2.read() - '0');
 
-    // Signifies end of 16 sEMG samples.  Ascii for "?" is 63, Ascii for "0" is 48, 63 - 48 = "15"
-    if (temp_semg == "15") {
+    // Signifies end of 16 sEMG samples.
+    if (temp_semg == "15") { // Ascii for "?" is 63, Ascii for "0" is 48, 63 - 48 = "15"
       
       // Extract sEMG array to float array of size 16.
       float *semg = NULL;
