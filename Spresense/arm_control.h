@@ -3,7 +3,7 @@
       Robotic Arm Control Utility Function
     Date: Summer 2022
 
-    1. D06 = PWM Thumb
+    1. D06 = PWM Thumb 
     2. D05 = PWM Index
     3. D03 = PWM Pinky (& Middle & Ring)
 

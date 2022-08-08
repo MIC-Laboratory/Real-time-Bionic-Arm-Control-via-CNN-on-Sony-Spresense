@@ -2,7 +2,7 @@
   Description:
     Finetuned model weights for tensorflow lite model inference
   Date: Summer 2022
-*/
+*/ 
 
 const unsigned char model_tflite[] = {
   0x1C, 0x00, 0x00, 0x00, 0x54, 0x46, 0x4C, 0x33, 0x14, 0x00,

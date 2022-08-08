@@ -10,7 +10,7 @@
   - TX2 -> Spresense RX
   - GND -> Spresense GND
 */
-
+ 
 // Library for Myo Armband connection
 // Setup Guide / Github Repo: https://www.arduino.cc/reference/en/libraries/sparthan-myo/
 #include <myo.h>

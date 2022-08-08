@@ -26,7 +26,7 @@
 #include "tensorflow/lite/micro/micro_interpreter.h"
 #include "tensorflow/lite/micro/system_setup.h"
 #include "tensorflow/lite/schema/schema_generated.h"
-
+ 
 // Get quantized finetuned model's weights (stored in array: model_tflite)
 #include "model.h"
 

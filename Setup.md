@@ -1,6 +1,6 @@
 # 1. Setup for ESP32 devkit v1
     - Install arduino-esp32:
-
+ 
         1. Start Arduino IDE.
         2. On top left hand side, select "Preferences" under "File". (OR: run command CTRL + COMMA)
         3. Enter link below into Additional Board Manager URLs field. You can add multiple URLs, separating them with commas.
