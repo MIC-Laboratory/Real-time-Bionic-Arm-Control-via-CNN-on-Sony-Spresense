@@ -13,7 +13,6 @@
         8. Click "Install", wait upon installation to complete and exit.
         9. On top left hand side, select "Board" under "Tools".
         10. Find "ESP32 Arduino" and select "ESP32 Dev Module"
-        
     
     - Install sparthan-myo:
 

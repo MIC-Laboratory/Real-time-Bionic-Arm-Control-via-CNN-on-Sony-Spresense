@@ -10,8 +10,8 @@
             - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
 
 # Run Code in Arduino IDE:
-    1. Flash ESP32/ESP32.ino to ESP32 Devkit v1 board
-    2. Flash Spresense/Spresense.ino to Sony Spresense board
+    1. Flash ESP32/ESP32.ino to ESP32 Devkit v1 board by clicking the upload button in Arduino IDE
+    2. Flash Spresense/Spresense.ino to Sony Spresense board by clicking the upload button in Arduino IDE
 
 # Files Overview:
 1. Folder ESP32 contains:
