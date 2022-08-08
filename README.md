@@ -9,7 +9,7 @@
 
 # Run Code in Arduino IDE:
     1. Flash ESP32/ESP32.ino to ESP32 Devkit v1 board
-    2. Flash Spresense\Spresense.ino to Sony Spresense board
+    2. Flash Spresense/Spresense.ino to Sony Spresense board
 
 # Files Overview:
 1. Folder ESP32 contains:
