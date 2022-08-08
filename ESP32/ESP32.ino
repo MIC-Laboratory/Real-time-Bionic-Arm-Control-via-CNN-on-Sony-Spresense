@@ -47,6 +47,8 @@ void emgCallback(BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pDa
     Sample sequence: "0<134<26<32<49<123<34<34<90<39<34<34<4<9<6<10<"   ("<" seperates each sEMG sample)
     - First sEMG array: 1st to 8th sEMG sample comes from myo sensor/channel 1, 2 ... 8
     - Second sEMG array: 9th to 16th sEMG samples comes from myo sensor/channel 1, 2 ... 8
+
+    Note: Sony Spresense will receive in characters one by one, as opposed to an entire string array.
   */
   SerialPort.print(sequence);
 
