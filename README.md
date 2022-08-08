@@ -1,6 +1,4 @@
-# Sony-Competition
-
-Module Setup Guide:
+# Module Setup Guide:
 
     1. ESP32 Devkit v1:
         - arduino-esp32: https://github.com/espressif/arduino-esp32
@@ -9,6 +7,7 @@ Module Setup Guide:
     2. Sony Spresense (Main + Extension): 
         - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
 
+# Files Overview:
 1. Folder ESP32 contains:
     - ESP32.ino:
         Baud Rate: 250000
@@ -17,4 +16,3 @@ Module Setup Guide:
         2. Communicates retrieved sEMG signals to Sony Spresense via. UART Serial.
 
 2. Folder Spresense contains:
-    
