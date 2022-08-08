@@ -35,5 +35,5 @@
         
         1. Mean and Standard Deviation for each Myo channel, calculated from 7 gestues' sEMG in NinaPro DB5
 
-
+# System Work Flow:
 ![Alt text](system.jpg?raw=true "Title")
