@@ -19,8 +19,8 @@
     - Spresense.ino:
         Baud Rate: 250000
 
-        1. Decode sEMG signals sent from ESP32 Devkit v1
-        2. Perform sEMG preprocessing and run model inference
+        1. Decode sEMG signals sent from ESP32 Devkit v1 via. UART Serial
+        2. Perform sEMG preprocessing and run model inference z
         3. Control Bionic Arm
 
     - arm_control.h:
