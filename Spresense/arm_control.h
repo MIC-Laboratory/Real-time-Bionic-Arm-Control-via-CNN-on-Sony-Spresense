@@ -1,5 +1,7 @@
 /*
-    Purpose: Robotic Arm Control Utility Function
+    Description:
+      Robotic Arm Control Utility Function
+    Date: Summer 2022
 
     1. D06 = PWM Thumb
     2. D05 = PWM Index

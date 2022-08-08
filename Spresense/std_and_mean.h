@@ -1,3 +1,9 @@
+/*
+  Description:
+    Mean and Standard Deviation for each Myo channel, calculated from 7 gestues' sEMG in NinaPro DB5
+  Date: Summer 2022
+*/
+
 const float s_params[8][8] = {
     {-0.90727645, 14.052758}, // [0][0] is MEAN, [0][1] is STD of Myo Channel 1
     {-1.0710329, 16.929909},  // [1][0] is MEAN, [1][1] is STD of Myo Channel 2

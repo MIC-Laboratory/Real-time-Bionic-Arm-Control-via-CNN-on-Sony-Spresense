@@ -16,3 +16,21 @@
         2. Communicates retrieved sEMG signals to Sony Spresense via. UART Serial.
 
 2. Folder Spresense contains:
+    - Spresense.ino:
+        Baud Rate: 250000
+
+        1. Decode sEMG signals sent from ESP32 Devkit v1
+        2. Perform sEMG preprocessing and run model inference
+        3. Control Bionic Arm
+
+    - arm_control.h:
+
+        1. Robotic Arm Control Utility Function
+    
+    - model.h:
+        
+        1. Finetuned model weights for tensorflow lite model inference
+    
+    - std_and_mean.h:
+        
+        1. Mean and Standard Deviation for each Myo channel, calculated from 7 gestues' sEMG in NinaPro DB5

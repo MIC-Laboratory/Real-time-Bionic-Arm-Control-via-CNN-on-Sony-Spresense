@@ -1,4 +1,10 @@
 /*
+  Description:
+    1. Decode sEMG signals sent from ESP32 Devkit v1
+    2. Perform sEMG preprocessing and run model inference
+    3. Control Bionic Arm
+  Date: Summer 2022
+
   Device: Sony Spresense Main + Extension Board
 
   Pins needed:

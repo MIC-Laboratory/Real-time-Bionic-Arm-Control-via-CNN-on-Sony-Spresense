@@ -1,4 +1,9 @@
 /*
+  Description:
+    1. Connects to Myo Armband via. BLE and retrieve sEMG signals from it.
+    2. Communicates retrieved sEMG signals to Sony Spresense via. UART Serial.
+  Date: Summer 2022
+
   Device: ESP32 Devkit v1
 
   Pins needed:
