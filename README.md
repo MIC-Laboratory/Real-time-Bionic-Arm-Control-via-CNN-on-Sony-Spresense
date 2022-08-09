@@ -12,7 +12,7 @@ This project aims to deploy a deep neural network on the Sony Spresense micro-co
 ## Full Story
 https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-recognition-b013d3
 
-# Module Setup Guide:
+## Module Setup Guide:
     NOTE: Read Setup.md for INSTALLATION GUIDES.
  
     Sources: 
@@ -23,11 +23,11 @@ https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-re
         2. Sony Spresense (Main + Extension): 
             - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
 
-# Run Code in Arduino IDE:
+## Run Code in Arduino IDE:
     1. Flash ESP32/ESP32.ino to ESP32 Devkit v1 board by clicking the upload button in Arduino IDE
     2. Flash Spresense/Spresense.ino to Sony Spresense board by clicking the upload button in Arduino IDE
  
-# Files Overview:
+## Files Overview:
 1. Folder ESP32 contains:
     - ESP32.ino:
         Baud Rate: 250000
