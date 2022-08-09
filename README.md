@@ -1,4 +1,4 @@
-# Real-time Bionic Arm Control Via CNN-based EMG Recognition
+# Real-time Bionic Arm Control Via CNN-based sEMG Recognition
 
 ## System Work Flow:
 ![Alt text](system.jpg?raw=true "Title")
