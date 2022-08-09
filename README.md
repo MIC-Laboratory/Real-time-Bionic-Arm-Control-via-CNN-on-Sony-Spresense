@@ -30,18 +30,18 @@ https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-re
 ## Files Overview:
 1. Folder ESP32 contains:
     - `ESP32.ino`:
-        Baud Rate: 250000
 
         1. Connects to Myo Armband via. BLE and retrieve sEMG signals from it.
         2. Communicates retrieved sEMG signals to Sony Spresense via. UART Serial.
+        (Baud Rate: 250000)
 
 2. Folder Spresense contains:
     - `Spresense.ino`:
-        Baud Rate: 250000
 
         1. Decode sEMG signals sent from ESP32 Devkit v1 via. UART Serial
         2. Perform sEMG preprocessing and run model inference z
         3. Control Bionic Arm
+        (Baud Rate: 250000)
 
     - `arm_control.h`:
 
