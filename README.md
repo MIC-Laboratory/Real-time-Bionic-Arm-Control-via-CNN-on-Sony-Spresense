@@ -13,14 +13,14 @@ This project aims to deploy a deep neural network on the Sony Spresense micro-co
 https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-recognition-b013d3
 
 ## Module Setup Guide:
-    NOTE: Read `Setup.md` for INSTALLATION GUIDES.
+    NOTE: Read Setup.md for INSTALLATION GUIDES.
  
     Sources: 
-        1. ESP32 Devkit v1:
+        1. For ESP32 Devkit v1:
             - arduino-esp32: https://github.com/espressif/arduino-esp32
             - sparthan-myo: https://github.com/project-sparthan/sparthan-myo
         
-        2. Sony Spresense (Main + Extension): 
+        2. For Sony Spresense (Main + Extension): 
             - spresense-arduino-tensorflow: https://github.com/YoshinoTaro/spresense-arduino-tensorflow
 
 ## Run Code in Arduino IDE:
@@ -50,7 +50,12 @@ https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-re
     - `model.h`:
         
         1. Finetuned model weights for tensorflow lite model inference
+        2. Exported from: https://github.com/MIC-Laboratory/sEMG_Recognition
     
     - `std_and_mean.h`:
         
         1. Mean and Standard Deviation for each Myo channel, calculated from 7 gestues' sEMG in NinaPro DB5
+        2. Source: https://github.com/MIC-Laboratory/sEMG_Recognition
+
+## Offline Training and Finetuning:
+Please follow this Github repo: https://github.com/MIC-Laboratory/sEMG_Recognition
