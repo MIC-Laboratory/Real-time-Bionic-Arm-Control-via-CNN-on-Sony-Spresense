@@ -1,3 +1,8 @@
+# Real-time Bionic Arm Control Via CNN-based EMG Recognition
+
+# System Work Flow:
+![Alt text](system.jpg?raw=true "Title")
+
 # Module Setup Guide:
     NOTE: Read Setup.md for INSTALLATION GUIDES.
  
@@ -40,6 +45,3 @@
     - std_and_mean.h:
         
         1. Mean and Standard Deviation for each Myo channel, calculated from 7 gestues' sEMG in NinaPro DB5
-
-# System Work Flow:
-![Alt text](system.jpg?raw=true "Title")
