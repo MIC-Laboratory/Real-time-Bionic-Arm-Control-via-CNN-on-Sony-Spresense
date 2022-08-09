@@ -9,6 +9,8 @@ This project aims to deploy a deep neural network on the Sony Spresense micro-co
 ## Demo
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/r8Wh6ckIqSM/0.jpg)](https://www.youtube.com/watch?v=r8Wh6ckIqSM)
 
+## Full Story
+https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-recognition-b013d3
 
 # Module Setup Guide:
     NOTE: Read Setup.md for INSTALLATION GUIDES.
