@@ -7,9 +7,8 @@
 This project aims to deploy a deep neural network on the Sony Spresense micro-controller for real-time bionic arm control. We used a 2D Convolutional Neural Network (CNN) as our EMG pattern recognition algorithm, which has been fine-tuned and compressed before deploying to Sony Spresense. Our sEMG data collection is based on Myo Armband, and communicated to the Sony Spresense via. an intermediary board, the ESP32 Devkit v1.
 
 # Demo
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/r8Wh6ckIqSM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=r8Wh6ckIqSM)](https://www.youtube.com/watch?v=r8Wh6ckIqSM)
+
 
 # Module Setup Guide:
     NOTE: Read Setup.md for INSTALLATION GUIDES.
