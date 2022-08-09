@@ -13,7 +13,7 @@ This project aims to deploy a deep neural network on the Sony Spresense micro-co
 https://www.hackster.io/emgarm/real-time-bionic-arm-control-via-cnn-based-emg-recognition-b013d3
 
 ## Module Setup Guide:
-    NOTE: Read Setup.md for INSTALLATION GUIDES.
+    NOTE: Read `Setup.md` for INSTALLATION GUIDES.
  
     Sources: 
         1. ESP32 Devkit v1:
