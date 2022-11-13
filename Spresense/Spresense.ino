@@ -239,16 +239,18 @@ void do_step() {
     Purpose:
       Perform sliding step upon current_window.
   */
-
+  int step_size = 16;
+  int incre = 32 - step_size;
+  
   // Move last 16 samples from current to the front before next sliding window.
   for (int i = 0; i < 8; i++) {
-    for (int j = 0; j < 16; j++) {
-      current_window[i][j] = current_window[i][j + 16];
+    for (int j = 0; j < incre; j++) {
+      current_window[i][j] = current_window[i][j + step_size];
     }
   }
 
   // Reset curr_idx to prepare for next sliding window of step size 16
-  curr_idx = 16;
+  curr_idx = incre;
 }
 
 
